@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import Header from '@/components/Header'
+import { Separator } from "@/components/ui/separator"
+import ApolloProvider from '@/components/ApolloProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -16,7 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} p-4`}>
+        <ApolloProvider>
+          <Header />
+          <Separator className='mb-6' />
+          <main>{children}</main>
+        </ApolloProvider>
+      </body>
     </html>
   )
 }

@@ -2,7 +2,7 @@ import { Context } from "@/pages/api/graphql";
 
 export const resolvers = {
     Query: {
-        tasks: async (_parent: any, args: any, { prisma }: Context) => {
+        tasks: async (_parent: any, _args: any, { prisma }: Context) => {
             return await prisma.task.findMany();
         },
         task: async (_parent: any, { id }: any, { prisma }: Context) => {
@@ -15,7 +15,6 @@ export const resolvers = {
                 data: {
                     title,
                     description,
-                    status: "OPEN"
                 }
             });
         },

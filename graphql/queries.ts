@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const GET_TASKS = gql`
-    query {
+    query Tasks {
         tasks {
             id
             title
@@ -15,7 +15,7 @@ export const GET_TASKS = gql`
 `;
 
 export const GET_TASK = gql`
-    query ($id: ID!) {
+    query Task ($id: ID!) {
         task(id: $id) {
             id
             title
