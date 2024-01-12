@@ -82,7 +82,10 @@ export default function Home() {
     const oldStatus = task.status;
 
     newTaskState[oldStatus] = newTaskState[oldStatus].filter(taskAnalised => taskAnalised.id !== task.id);
-    newTaskState[status].push(task);
+    newTaskState[status].push({
+      ...task,
+      status
+    });
 
     setTasksByStatus(newTaskState);
   }
