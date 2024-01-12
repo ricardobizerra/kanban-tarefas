@@ -21,25 +21,23 @@ export default function Header() {
             </div>
 
             <div className="flex items-center">
-                <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                        <Button 
-                            className="flex items-center rounded-lg"
-                        >
-                            {
-                                pathname === '/' && (
-                                    <>
-                                        <PlusIcon className="mr-2 h-4 w-4" /> Adicionar tarefa
-                                    </>
-                                )
-                            }
-                        </Button>
-                    </AlertDialogTrigger>
+                {
+                    pathname === '/' && (
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button 
+                                    className="flex items-center rounded-lg"
+                                >
+                                    <PlusIcon className="mr-2 h-4 w-4" /> Adicionar tarefa
+                                </Button>
+                            </AlertDialogTrigger>
 
-                    <AlertDialogContent>
-                        <NewTask />
-                    </AlertDialogContent>
-                </AlertDialog>
+                            <AlertDialogContent>
+                                <NewTask />
+                            </AlertDialogContent>
+                        </AlertDialog>
+                    )
+                }
 
                 <Button 
                     className="ml-2 flex items-center rounded-lg"
