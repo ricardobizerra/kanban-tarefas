@@ -3,6 +3,8 @@ import { PlusIcon, BarChartIcon, ChevronLeftIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AlertDialog, AlertDialogContent, AlertDialogTrigger } from "../ui/alert-dialog";
+import NewTask from "../NewTask";
 
 export default function Header() {
     const pathname = usePathname();
@@ -19,17 +21,25 @@ export default function Header() {
             </div>
 
             <div className="flex items-center">
-                <Button 
-                    className="flex items-center rounded-lg"
-                >
-                    {
-                        pathname === '/' && (
-                            <>
-                                <PlusIcon className="mr-2 h-4 w-4" /> Adicionar tarefa
-                            </>
-                        )
-                    }
-                </Button>
+                <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                        <Button 
+                            className="flex items-center rounded-lg"
+                        >
+                            {
+                                pathname === '/' && (
+                                    <>
+                                        <PlusIcon className="mr-2 h-4 w-4" /> Adicionar tarefa
+                                    </>
+                                )
+                            }
+                        </Button>
+                    </AlertDialogTrigger>
+
+                    <AlertDialogContent>
+                        <NewTask />
+                    </AlertDialogContent>
+                </AlertDialog>
 
                 <Button 
                     className="ml-2 flex items-center rounded-lg"
