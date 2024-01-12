@@ -15,8 +15,8 @@ export const CREATE_TASK = gql`
 `;
 
 export const UPDATE_TASK_STATUS = gql`
-    mutation UpdateTaskStatus($id: ID!, $status: TaskStatus!, $concludedAt: DateTime) {
-        updateTaskStatus(id: $id, status: $status, concludedAt: $concludedAt) {
+    mutation UpdateTaskStatus($id: ID!, $status: String!, $concludedAt: String) {
+        updateTask(id: $id, status: $status, concludedAt: $concludedAt) {
             id
             status
             concludedAt

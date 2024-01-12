@@ -14,7 +14,7 @@ export const typeDefs = `#graphql
         task(id: ID!): Task
     }
 
-    type Mutations {
+    type Mutation {
         createTask(title: String, description: String): Task
         updateTask(id: ID!, status: String, concludedAt: String): Task
     }

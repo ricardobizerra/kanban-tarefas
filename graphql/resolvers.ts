@@ -9,7 +9,7 @@ export const resolvers = {
             return await prisma.task.findUnique({ where: { id } });
         }
     },
-    Mutations: {
+    Mutation: {
         createTask: async (_parent: any, { title, description }: any, { prisma }: Context) => {
             return await prisma.task.create({
                 data: {

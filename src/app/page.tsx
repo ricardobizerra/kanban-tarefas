@@ -1,6 +1,7 @@
 "use client";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { GET_TASKS } from "../../graphql/queries";
+import { UPDATE_TASK_STATUS } from "../../graphql/mutation";
 import { Task } from "@prisma/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Droppable, Draggable, DragDropContext } from "@hello-pangea/dnd";
@@ -33,11 +34,16 @@ export default function Home() {
     "DONE": []
   });
 
-  const { 
-    data, 
-    loading, 
-    error 
-  } = useQuery(GET_TASKS);
+  const [updateTaskStatus] = useMutation(UPDATE_TASK_STATUS, {
+    variables: {
+      id: "",
+      status: "",
+      concludedAt: null
+    },
+    refetchQueries: [{ query: GET_TASKS }]
+  });
+
+  const { data } = useQuery(GET_TASKS);
 
   useEffect(() => {
     if (data) {
@@ -88,6 +94,14 @@ export default function Home() {
     });
 
     setTasksByStatus(newTaskState);
+
+    updateTaskStatus({
+      variables: {
+        id: task.id,
+        status,
+        concludedAt: status === "DONE" ? new Date() : null
+      }
+    });
   }
 
   return (
