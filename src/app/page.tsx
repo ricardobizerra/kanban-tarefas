@@ -1,11 +1,13 @@
 "use client";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_TASKS } from "../../graphql/queries";
-import { UPDATE_TASK_STATUS } from "../../graphql/mutation";
+import { UPDATE_TASK_STAR, UPDATE_TASK_STATUS } from "../../graphql/mutation";
 import { Task } from "@prisma/client";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Droppable, Draggable, DragDropContext } from "@hello-pangea/dnd";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { StarFilledIcon, StarIcon } from "@radix-ui/react-icons";
 
 interface TaskByStatusInterface {
   [key: string]: Task[]
@@ -43,6 +45,14 @@ export default function Home() {
     refetchQueries: [{ query: GET_TASKS }]
   });
 
+  const [updateTaskStar] = useMutation(UPDATE_TASK_STAR, {
+    variables: {
+      id: "",
+      star: false
+    },
+    refetchQueries: [{ query: GET_TASKS }]
+  });
+
   const { data } = useQuery(GET_TASKS);
 
   useEffect(() => {
@@ -56,6 +66,9 @@ export default function Home() {
 
       for (const task of tasks) {
         updatedTasksByStatus[task.status].push(task);
+        updatedTasksByStatus[task.status].sort((a, b) => {
+          return a.star === b.star ? 0 : a.star ? -1 : 1;
+        })
       }
 
       setTasksByStatus(updatedTasksByStatus);
@@ -164,6 +177,26 @@ export default function Home() {
                                             {task.description}
                                           </CardDescription>
                                         </CardHeader>
+
+                                        <CardFooter>
+                                          <Button 
+                                            variant="secondary" 
+                                            onClick={
+                                              () => updateTaskStar({
+                                                variables: {
+                                                  id: task.id,
+                                                  star: !task.star
+                                                }
+                                              })
+                                            }
+                                          >
+                                            {task.star ? (
+                                              <StarFilledIcon />
+                                            ) : (
+                                              <StarIcon />
+                                            )}
+                                          </Button>
+                                        </CardFooter>
                                       </Card>
                                     </div>
                                   )

@@ -7,6 +7,7 @@ export const typeDefs = `#graphql
         createdAt: String
         updatedAt: String
         concludedAt: String
+        star: Boolean
     }
 
     type Query {
@@ -17,5 +18,6 @@ export const typeDefs = `#graphql
     type Mutation {
         createTask(title: String, description: String): Task
         updateTask(id: ID!, status: String, concludedAt: String): Task
+        updateTaskStar(id: ID!, star: Boolean): Task
     }
 `

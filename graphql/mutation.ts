@@ -23,3 +23,12 @@ export const UPDATE_TASK_STATUS = gql`
         }
     }
 `;
+
+export const UPDATE_TASK_STAR = gql`
+    mutation UpdateTaskStar($id: ID!, $star: Boolean!) {
+        updateTaskStar(id: $id, star: $star) {
+            id
+            star
+        }
+    }
+`;

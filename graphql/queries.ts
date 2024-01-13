@@ -10,6 +10,7 @@ export const GET_TASKS = gql`
             createdAt
             updatedAt
             concludedAt
+            star
         }
     }
 `;
@@ -24,6 +25,7 @@ export const GET_TASK = gql`
             createdAt
             updatedAt
             concludedAt
+            star
         }
     }
 `;

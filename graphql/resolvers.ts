@@ -26,6 +26,14 @@ export const resolvers = {
                     concludedAt
                 }
             });
+        },
+        updateTaskStar: async (_parent: any, { id, star }: any, { prisma }: Context) => {
+            return await prisma.task.update({
+                where: { id },
+                data: {
+                    star
+                }
+            });
         }
     }
 }
