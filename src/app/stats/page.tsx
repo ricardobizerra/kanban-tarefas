@@ -57,7 +57,7 @@ export default function Stats() {
 
     return (
         <div className="flex justify-between">
-            <div className="flex justify-center items-center p-6 w-[49%] border border-slate-800 rounded-lg hover:bg-slate-800 hover:ease-in-out hover:duration-300">
+            <div className="flex justify-center items-center p-6 w-[49%] border border-slate-900 rounded-lg hover:bg-slate-900 hover:ease-in-out hover:duration-300">
                 <Chart
                     options={{
                         labels: ["Para Fazer", "Em Progresso", "Feito"],
@@ -77,12 +77,15 @@ export default function Stats() {
                 />
             </div>
 
-            <div className="flex justify-center items-center p-6 w-[49%] border border-slate-800 rounded-lg hover:bg-slate-800 hover:ease-in-out hover:duration-300">
+            <div className="flex justify-center items-center p-6 w-[49%] border border-slate-900 rounded-lg hover:bg-slate-900 hover:ease-in-out hover:duration-300">
                 <Chart
                     options={{
                         xaxis: {
                             categories: Object.keys(doneTasksByDay),
                         },
+                        tooltip: {
+                            theme: "dark",
+                        }
                     }}
                     series={[
                         {
