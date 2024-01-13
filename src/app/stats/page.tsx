@@ -56,14 +56,17 @@ export default function Stats() {
     }, [data]);
 
     return (
-        <div className="flex justify-between">
-            <div className="flex justify-center items-center p-6 w-[49%] border border-slate-900 rounded-lg hover:bg-slate-900 hover:ease-in-out hover:duration-300">
+        <div className="flex justify-between phone:flex-col phone:gap-4">
+            <div className="flex justify-center items-center p-6 w-[49%] phone:w-full border border-slate-900 rounded-lg hover:bg-slate-900 hover:ease-in-out hover:duration-300">
                 <Chart
                     options={{
                         labels: ["Para Fazer", "Em Progresso", "Feito"],
                         colors: ["#EF4444", "#10B981", "#8B5CF6"],
                         chart: {
                             foreColor: "#fff",
+                        },
+                        legend: {
+                            position: "bottom"
                         }
                     }}
                     series={[
@@ -72,12 +75,12 @@ export default function Stats() {
                                 data?.tasks.filter((task: Task) => task.status === "DONE").length
                             ]}
                     type="pie"
-                    width="500"
+                    width="100%"
                     height="500"
                 />
             </div>
 
-            <div className="flex justify-center items-center p-6 w-[49%] border border-slate-900 rounded-lg hover:bg-slate-900 hover:ease-in-out hover:duration-300">
+            <div className="flex justify-center items-center p-6 w-[49%] phone:w-full border border-slate-900 rounded-lg hover:bg-slate-900 hover:ease-in-out hover:duration-300">
                 <Chart
                     options={{
                         xaxis: {
@@ -93,7 +96,7 @@ export default function Stats() {
                         },
                     ]}
                     type="line"
-                    width="500"
+                    width="100%"
                     height="500"
                 />
             </div>

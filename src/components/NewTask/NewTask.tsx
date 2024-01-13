@@ -5,8 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 
-import { AlertDialogAction, AlertDialogCancel, AlertDialogFooter, AlertDialogHeader } from "../ui/alert-dialog";
-import { Form } from "../ui/form";
+import { AlertDialogAction, AlertDialogCancel, AlertDialogFooter, AlertDialogHeader } from "@/components/ui/alert-dialog";
+import { Form } from "@/components/ui/form";
 
 import { CREATE_TASK } from "../../../graphql/mutation";
 import { GET_TASKS } from "../../../graphql/queries";
@@ -68,7 +68,7 @@ export default function NewTask() {
                         />
                     </AlertDialogHeader>
 
-                    <AlertDialogFooter>
+                    <AlertDialogFooter className="mt-4">
                         <AlertDialogCancel>Cancelar</AlertDialogCancel>
                         <AlertDialogAction type="submit">
                             Adicionar

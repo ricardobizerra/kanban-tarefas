@@ -105,7 +105,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex justify-evenly">
+    <div className="flex justify-evenly phone:flex-col phone:gap-4">
       <DragDropContext
         onDragEnd={onDragEnd}
       >
@@ -115,7 +115,7 @@ export default function Home() {
             return (
               <Card
                 key={status}
-                className="w-1/4"
+                className="w-1/4 phone:w-full"
               >
                 <CardHeader>
                   <CardTitle
