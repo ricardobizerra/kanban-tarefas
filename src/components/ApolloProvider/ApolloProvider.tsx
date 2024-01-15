@@ -5,7 +5,7 @@ import React from "react";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
     const client = new ApolloClient({
-        uri: "http://localhost:3000/api/graphql",
+        uri: `${process.env.API_URL}/api/graphql`,
         cache: new InMemoryCache(),
     });
 
