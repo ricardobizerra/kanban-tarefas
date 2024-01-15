@@ -17,5 +17,12 @@ const apolloServer = new ApolloServer<Context>({
 })
 
 export default startServerAndCreateNextHandler(apolloServer, {
-    context: async (req, res) => ({ req, res, prisma })
+    context: async (req, res) => {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+
+        return ({ req, res, prisma })
+    }
 })
